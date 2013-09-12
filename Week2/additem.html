@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Project 1
+Project 2
 Boyd Tiffin
 1309 -Visual Frameworks
 -->
@@ -30,7 +30,7 @@ Boyd Tiffin
 				<fieldset>
 					<legend>Add Idea</legend>
 					<ul>
-						<li><label for="ideaTitle">Idea Title:</label><input type="text" id="ideaTitle" placeholder="My Idea" /></li>
+						<li><label for="ideaTitle">Idea Title:</label><input type="text" id="ideaTitle" /></li>
 						<li><label for="importance">Importance:</label><input type="range" min="1" max="10" id="importance" /></li>
 						<li>Idea Type
 							<ul>
@@ -48,12 +48,13 @@ Boyd Tiffin
 							<option value="Implemented">Implemented</option>
 						</select>
 						<li><label for="description">Type your full idea below:</label><textarea id="description"></textarea></li>
-						<input class="hiddenli" type="hidden" value="Week 1">
+						<input id="week" type="hidden" value="Week 1">
 					</ul>
 				</fieldset>
 				<input id="butSubmit" type="submit" value="Add Idea Now" />
 			</form>
 			<a href="#">Clear Stored Data</a>  |  <a href="#">Display Data</a>
 		</section>
+		<script src="js/main.js" type="text/javascript"></script>
 	</body>
 </html>
