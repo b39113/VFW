@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+Project 1
+Boyd Tiffin
+1309 -Visual Frameworks
+-->
+<html>
+	<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Idea Logger - Add Idea" />
+	<meta name="keywords" content="idea logger,logger,idea,list" />
+	<meta name="robots" content="index, follow" />
+	<meta name="viewport" content="user-scalable=no, width=device-width" />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="320" />
+	<title>Add Idea | Idea Logger</title> 
+	</head>
+	<body>
+<!-- 	Start Header -->
+		<header>
+			<h1>Idea List</h1>
+		</header>
+<!-- 	End Header	 -->
+<!-- 	Start Body	 -->
+		<section>
+			<form action="#" method="post">
+				<fieldset>
+					<legend>Add Idea</legend>
+					<ul>
+						<li><label for="ideaTitle">Idea Title:</label><input type="text" id="ideaTitle" placeholder="Boyd Tiffin" /></li>
+						<li><label for="importance">Importance:</label><input type="range" min="1" max="10" id="importance" /></li>
+						<li>Idea Type
+							<ul>
+								<li><input type="checkbox" value="App" id="app" /><label for="app">App</label></li>
+								<li><input type="checkbox" value="Website" id="web" /><label for="web">Website</label></li>
+								<li><input type="checkbox" value="Domain" id="domain" /><label for="domain">Domain Name</label></li>
+							</ul>
+						</li>
+						<li><label for="dateDue">Date Due:</label><input type="date" id="dateDue" /></li>
+						<li><label for="status">Current Status</label>
+						<select id="status">
+							<option value="Lightbulb">Lightbulb</option>
+							<option value="Requirements">Requirements</option>
+							<option value="Development">Development</option>
+							<option value="Implemented">Implemented</option>
+						</select>
+						<li><label for="description">Type your full idea below:</label><textarea id="description"></textarea></li>
+						<li><input type="hidden" value="Week 1"></li>
+					</ul>
+				</fieldset>
+				<input type="submit" value="Add Idea Now" />
+			</form>
+			<a href="#">Clear Stored Data</a>  |  <a href="#">Display Data</a>
+		</section>
+	</body>
+</html>
