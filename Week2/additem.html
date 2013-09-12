@@ -14,11 +14,14 @@ Boyd Tiffin
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="MobileOptimized" content="320" />
 	<title>Add Idea | Idea Logger</title> 
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
 <!-- 	Start Header -->
 		<header>
-			<h1>Idea List</h1>
+			<div>
+				<h1>Idea List</h1>
+			</div>
 		</header>
 <!-- 	End Header	 -->
 <!-- 	Start Body	 -->
@@ -27,7 +30,7 @@ Boyd Tiffin
 				<fieldset>
 					<legend>Add Idea</legend>
 					<ul>
-						<li><label for="ideaTitle">Idea Title:</label><input type="text" id="ideaTitle" placeholder="Boyd Tiffin" /></li>
+						<li><label for="ideaTitle">Idea Title:</label><input type="text" id="ideaTitle" placeholder="My Idea" /></li>
 						<li><label for="importance">Importance:</label><input type="range" min="1" max="10" id="importance" /></li>
 						<li>Idea Type
 							<ul>
@@ -45,10 +48,10 @@ Boyd Tiffin
 							<option value="Implemented">Implemented</option>
 						</select>
 						<li><label for="description">Type your full idea below:</label><textarea id="description"></textarea></li>
-						<li><input type="hidden" value="Week 1"></li>
+						<input class="hiddenli" type="hidden" value="Week 1">
 					</ul>
 				</fieldset>
-				<input type="submit" value="Add Idea Now" />
+				<input id="butSubmit" type="submit" value="Add Idea Now" />
 			</form>
 			<a href="#">Clear Stored Data</a>  |  <a href="#">Display Data</a>
 		</section>
