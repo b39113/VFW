@@ -80,6 +80,28 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	};
 	
+	// Toggle Display for Display Data
+	function toogleControls(n){
+		switch(n){
+			case "on":
+				$('mySubmit').style.display = "none";
+				$('clearAllLink').style.display = "inline";
+				$('displayLink').style.display = "none";
+				$('addNew').style.display = "inline";
+			break;
+			case "off":
+				$('mySubmit').style.display = "block";
+				$('clearAllLink').style.display = "inline";
+				$('displayLink').style.display = "inline";
+				$('addNew').style.display = "none";
+				$('items').style.display = "none";
+			break;
+			default:
+				return false;
+		}
+	}
+	
+	
 	// Function to Store Data
 	function storeData (){
 		var id = Math.floor(Math.random()*100000001);
@@ -98,12 +120,14 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	// Function to display items and hide form when button is clicked
 	var displayData = function(){
+	toogleControls("on");
 	// Display data to user
 		var createDiv = document.createElement('div');
 		createDiv.setAttribute("id", "items");
 		var createList = document.createElement('ul');
 		createDiv.appendChild(createList);
-		document.body.appendChild(createList);
+		document.body.appendChild(createDiv);
+		$('items').style.display = "block";
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var createLi = document.createElement('li');
 			createList.appendChild(createLi);

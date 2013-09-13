@@ -63,6 +63,8 @@ textarea{
 	background: #36b449;
 	border: 1px solid green;
 }
-
+#addNew{
+	display: none;
+}
 
 /* Classes */
