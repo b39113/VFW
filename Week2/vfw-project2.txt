@@ -1,0 +1,9 @@
+Boyd Tiffin
+1309 -Visual Frameworks
+
+Git Hub Links:
+Overall Link for each Week: https://github.com/b39113/VFW
+Week 2 Specific Folder: https://github.com/b39113/VFW/tree/master/Week2
+
+
+I need to get with you this next week and walk through some hurdles that I could not get resolved. I was able to move past them, but I need a walkthrough as to what I am doing wrong with a few aspects of this week.

@@ -1,4 +1,8 @@
 // JavaScript code for Week 2
+//Project 2
+//Boyd Tiffin
+//1309 -Visual Frameworks
+
 
 // Load all content before JS code runs
 window.addEventListener("DOMContentLoaded", function(){
@@ -68,7 +72,14 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	// Clear ALl data function which is called when the button is clicked
 	var clearAll = function(){
-		localStorage.clear();
+		if(localStorage.length ===0){
+			alert("There is no data to clear.");
+		}else{
+			localStorage.clear();
+			alert("Data has been cleared!");
+			window.location.reload();
+			return false;
+		}
 	};
 	
 	// Checkbox Value
@@ -99,7 +110,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			default:
 				return false;
 		}
-	}
+	};
 	
 	
 	// Function to Store Data
@@ -121,6 +132,10 @@ window.addEventListener("DOMContentLoaded", function(){
 	// Function to display items and hide form when button is clicked
 	var displayData = function(){
 	toogleControls("on");
+	if(localStorage.length === 0){
+		alert("You have no data in storage");
+		window.location.reload();
+	}
 	// Display data to user
 		var createDiv = document.createElement('div');
 		createDiv.setAttribute("id", "items");
