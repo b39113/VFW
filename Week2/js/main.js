@@ -86,19 +86,40 @@ window.addEventListener("DOMContentLoaded", function(){
 		// Get all form data in an Object
 		getCheckBoxValue();
 		var idea = {};
-			idea.title = ["Idea Title", $('ideaTitle').value];
-			idea.importance = ["Importance", $('importance').value];
-			idea.dateDue = ["Date Due", $('dateDue').value];
-			idea.description = ["Description", $('description').value];
-			idea.category = ["Category", $('category').value];
-			idea.status = ["Status", $('status').value];
+			idea.title = ["Idea Title:", $('ideaTitle').value];
+			idea.importance = ["Importance:", $('importance').value];
+			idea.dateDue = ["Date Due:", $('dateDue').value];
+			idea.description = ["Description:", $('description').value];
+			idea.category = ["Category:", $('category').value];
+			idea.status = ["Status:", $('status').value];
 		localStorage.setItem(id, JSON.stringify(idea));
 		alert("Idea Logged!");
 	};
 	
 	// Function to display items and hide form when button is clicked
 	var displayData = function(){
-		
+	// Display data to user
+		var createDiv = document.createElement('div');
+		createDiv.setAttribute("id", "items");
+		var createList = document.createElement('ul');
+		createDiv.appendChild(createList);
+		document.body.appendChild(createList);
+		for(var i=0, j=localStorage.length; i<j; i++){
+			var createLi = document.createElement('li');
+			createList.appendChild(createLi);
+			var key = localStorage.key(i);
+			var value = localStorage.getItem(key);
+			// String to Obj
+			var obj = JSON.parse(value); 
+			var createSubList = document.createElement('ul');
+			createLi.appendChild(createSubList);
+			for(var d in obj){
+				var createSubLi = document.createElement('li');
+				createSubList.appendChild(createSubLi);
+				var optSubText = obj[d][0]+" " +obj[d][1];
+				createSubLi.innerHTML = optSubText;
+			}
+		}		
 	};
 	
 	
