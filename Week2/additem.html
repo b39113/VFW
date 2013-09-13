@@ -32,26 +32,18 @@ Boyd Tiffin
 					<ul>
 						<li><label for="ideaTitle">Idea Title:</label><input type="text" id="ideaTitle" /></li>
 						<li><label for="importance">Importance:</label><input type="range" min="1" max="10" id="importance" /></li>
-						<li>Idea Type<br />
-							<input type="checkbox" name="category" value="App" id="app" /><label for="app">App</label>
-							<input type="checkbox" name="category" value="Website" id="web" /><label for="web">Website</label>
-							<input type="checkbox" name="category" value="Domain" id="domain" /><label for="domain">Domain Name</label>
+						<li>Million Dollar Idea?<br />
+							<input type="checkbox" name="category" value="Yes" id="category" /><label for="category">Yes?</label>
 						</li>
 						<li><label for="dateDue">Date Due:</label><input type="date" id="dateDue" /></li>
-						<li><label for="status">Current Status</label>
-						<select id="status">
-							<option name="curStatus" value="Lightbulb">Lightbulb</option>
-							<option name="curStatus" value="Requirements">Requirements</option>
-							<option name="curStatus" value="Development">Development</option>
-							<option name="curStatus" value="Implemented">Implemented</option>
-						</select>
+						<li id="select"><label for="status">Current Status</label>
 						<li><label for="description">Type your full idea below:</label><textarea id="description"></textarea></li>
 						<input id="week" type="hidden" value="Week 1">
 					</ul>
 				</fieldset>
 				<input id="butSubmit" type="button" value="Log Idea Now" />
 			</form>
-			<a id="clearAllLink" href="#">Clear Stored Data</a>  |  <a href="#">Display Data</a>
+			<a id="clearAllLink" href="#">Clear Stored Data</a>  |  <a id="displayLink" href="#">Display Data</a>
 		</section>
 		<script src="js/main.js" type="text/javascript"></script>
 	</body>
