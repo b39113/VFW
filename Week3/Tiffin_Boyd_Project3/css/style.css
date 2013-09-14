@@ -1,0 +1,77 @@
+/* 
+CSS Style Sheet
+Project 3
+Boyd Tiffin
+1309 -Visual Frameworks
+*/
+
+
+
+/* General */
+
+h1 {
+	font-size: 1.2em;
+	border: 1px solid black;
+	color: white;
+	letter-spacing: .6em;
+}
+
+a {
+	color: fuchsia;
+	
+}
+/* Websites Only, Not Valid on Mobile */
+a:hover{
+	text-decoration: overline;
+}
+
+div{
+	background-color: gray
+}
+
+p{
+	margin: 20px;
+}
+
+li{
+	list-style-type: square;
+}
+/* Wow, a replacement for Comic Sans! My life is complete now... Editorial Comment*/
+label{
+	font-family: fantasy;
+}
+
+input{
+	border: 1px dashed green;
+}
+
+form{
+	background: -webkit-linear-gradient(#979797 0%, #ffffff 100%);
+}
+
+legend{
+	color: white;
+	display: none;
+}
+
+fieldset{
+	border: none;
+}
+
+textarea{
+	padding: 10px;
+	
+}
+
+/* ID Specific */
+#butSubmit{
+	font-style: italic;
+	color: fuchsia;
+	background: #36b449;
+	border: 1px solid green;
+}
+#addNew{
+	display: none;
+}
+
+/* Classes */
