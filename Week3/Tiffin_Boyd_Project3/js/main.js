@@ -1,57 +1,29 @@
 // JavaScript code for Week 3
-//Project 3
+//Project 
 //Boyd Tiffin
 //1309 -Visual Frameworks
 
 
 // Load all content before JS code runs
 window.addEventListener("DOMContentLoaded", function(){
-
 	// Global Functions
 	function $(x){
 		var myElement = document.getElementById(x);
 		return myElement;
 	};
 	
-	
-	// Variables
-/*
-	var ideaTitle = $('ideaTitle');
-	var importance = $('importance');
-	var dateDue = $('dateDue');
-	var description = $('description');
-	var category = $('category');
-	var clearAllLink = $('clearAllLink');
-	var displayLink = $('displayLink');
-	var status = document.getElementById("mySubmit").status;
-	// This is not pulling category or status back as an array, I am stuck on this
-	console.log(status);
-	console.log(localStorage);
-*/
-	
-	
-	
-	// Functions
-	
+// Functions
 	/* Add Items TO localStorage */
 	var captureData = function(){
 		localStorage.setItem("Idea Title",ideaTitle.value);
 		localStorage.setItem("Importance",importance.value);
 		localStorage.setItem("Date Logged",dateDue.value);
 		localStorage.setItem("Idea Description",description.value);
-	// Loop through the checkboxes to determine what boxes are actually checked
-	/*
-		for(var i=0, j=category.length; i<j, i++){
-			if(category[i].checked){
-				console.log(category[i].value);
-			}
-		}
-	*/
 	};
 	
 	// Array for creating the Select Fields with JS
 	var statusGroup = ["Lightbulb", "Requirements", "Development", "Implemented"],
-	categoryValue = "No";
+	itemTypeValue = false;
 	catCreate();
 	
 	// Create Select Field from JS instead of HTML
@@ -83,13 +55,19 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 	
 	// Checkbox Value
-	function getCheckBoxValue(){
-		if($('category').checked){
-			categoryValue = $('category').value;
+	function getRadios(){
+		if($('domain').checked){
+			itemTypeValue = "Domain";
+		}else if($('website').checked){
+			itemTypeValue = "Website";
+		}else if($('app').checked){
+			itemTypeValue = "App";
 		}else{
-			categoryValue = "No";
+			itemTypeValue = "No";
 		}
 	};
+	
+	var checkboxes = document.getElementById("mySubmit").ideaType;
 	
 	// Toggle Display for Display Data
 	function toogleControls(n){
@@ -117,26 +95,27 @@ window.addEventListener("DOMContentLoaded", function(){
 	function storeData (){
 		var id = Math.floor(Math.random()*100000001);
 		// Get all form data in an Object
-		getCheckBoxValue();
+		getRadios();
 		var idea = {};
 			idea.title = ["Idea Title:", $('ideaTitle').value];
 			idea.importance = ["Importance:", $('importance').value];
 			idea.dateDue = ["Date Due:", $('dateDue').value];
 			idea.description = ["Description:", $('description').value];
-			idea.category = ["Category:", $('category').value];
+			idea.ideatype = ["Idea Type:", itemTypeValue];
 			idea.status = ["Status:", $('status').value];
 		localStorage.setItem(id, JSON.stringify(idea));
+		console.log(idea);
 		alert("Idea Logged!");
 	};
 	
 	// Function to display items and hide form when button is clicked
 	var displayData = function(){
-	toogleControls("on");
-	if(localStorage.length === 0){
-		alert("You have no data in storage");
-		window.location.reload();
-	}
-	// Display data to user
+		toogleControls("on");
+		if(localStorage.length === 0){
+			alert("You have no data in storage");
+			window.location.reload();
+		}
+		// Display data to user
 		var createDiv = document.createElement('div');
 		createDiv.setAttribute("id", "items");
 		var createList = document.createElement('ul');
@@ -145,6 +124,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		$('items').style.display = "block";
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var createLi = document.createElement('li');
+			var createLinks = document.createElement('li');
 			createList.appendChild(createLi);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
@@ -157,47 +137,60 @@ window.addEventListener("DOMContentLoaded", function(){
 				createSubList.appendChild(createSubLi);
 				var optSubText = obj[d][0]+" " +obj[d][1];
 				createSubLi.innerHTML = optSubText;
+				createSubList.appendChild(createLinks);
 			}
+			createItemLinks(localStorage.key(i), createLinks); // Creates the overall app edit and delete links
 		}		
 	};
 	
+	function createItemLinks(key,createLinks){
+		var editLink = document.createElement('a');
+		editLink.href = "#";
+		editLink.key = key;
+		var editText = "Edit Idea";
+		editLink.addEventListener("click", editItem);
+		editLink.innerHTML = editText;
+		createLinks.appendChild(editLink);
+		//add Line Break
+		var breakTag = document.createElement('br');
+		createLinks.appendChild(breakTag);
+		var deleteLink = document.createElement('a');
+		deleteLink.href = "#";
+		deleteLink.key = key;
+		var deleteText = "Delete Idea";
+		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.innerHTML = deleteText;
+		createLinks.appendChild(deleteLink);
+	};
 	
+	function editItem(){
+		// get item info from localStorage
+		var value = localStorage.getItem(this.key);
+		var idea = JSON.parse(value);
+		//Show Form
+		toogleControls("off");
+		console.log(idea);
+		$('ideaTitle').value = idea.title[1];
+		$('importance').value = idea.importance[1];
+		$('dateDue').value = idea.dateDue[1];
+		$('description').value = idea.description[1];
+		$('status').value = idea.status[1];
+		
+/* 		Need Radio Button and/or Checkbox Code */
+		var radios = document.forms[0].ideaType;
+		for(var i=0; i<radios.length; i++){
+			if(idea.ideatype[1] == "Domain"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(idea.ideatype[1] == "App"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(idea.ideatype[1] == "Website"){
+				radios[i].setAttribute("checked", "checked");
+			}
+		}
+	};
 	
 	/* Listeners */
-	
 	butSubmit.addEventListener("click" , storeData);
 	clearAllLink.addEventListener("click", clearAll);
 	displayLink.addEventListener("click", displayData);
-	
-	
-	
-	
-	
-	
-	
-	/* I cant get this section to work, it will not pull by Key Value, it only pulls by array order */
-	/*
-	var getData = function(){
-		var categoryKey = localStorage.key(0);
-		var categoryValue = localStorage.getItem(categoryKey);
-		category.value = categoryValue;
-		var dateDueKey = localStorage.key(1);
-		var dateDueValue = localStorage.getItem(dateDueKey);
-		dateDue.value = dateDueValue;
-		var descriptionKey = localStorage.key(2);
-		var descriptionValue = localStorage.getItem(descriptionKey);
-		description.value = descriptionValue;
-		var ideaTitleKey = localStorage.key(3);
-		var ideaTitleValue = localStorage.getItem(ideaTitleKey);
-		ideaTitle.value = ideaTitleValue;
-		var importanceKey = localStorage.key(4);
-		var importanceValue = localStorage.getItem(importanceKey);
-		importance.value = importanceValue;
-	};
-	*/
-
-
-
-
-
 });
