@@ -39,14 +39,15 @@ window.addEventListener("DOMContentLoaded", function(){
 		localStorage.setItem("Importance",importance.value);
 		localStorage.setItem("Date Logged",dateDue.value);
 		localStorage.setItem("Idea Description",description.value);
+		var category = document.getElementById("myForm").category;
+		var checkedValues = [];
 	// Loop through the checkboxes to determine what boxes are actually checked
-	/*
-		for(var i=0, j=category.length; i<j, i++){
+			for(var i=0, j=category.length; i<j; i++){
 			if(category[i].checked){
-				console.log(category[i].value);
+				checkedValues.push(category[i].value)
 			}
 		}
-	*/
+	
 	};
 	
 	// Array for creating the Select Fields with JS
@@ -176,12 +177,11 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	
 	/* I cant get this section to work, it will not pull by Key Value, it only pulls by array order */
-	/*
-	var getData = function(){
-		var categoryKey = localStorage.key(0);
+		function(){
+		var categoryKey = localStorage.key("category");
 		var categoryValue = localStorage.getItem(categoryKey);
 		category.value = categoryValue;
-		var dateDueKey = localStorage.key(1);
+		var dateDueKey = localStorage.key("dateDue");
 		var dateDueValue = localStorage.getItem(dateDueKey);
 		dateDue.value = dateDueValue;
 		var descriptionKey = localStorage.key(2);
@@ -194,7 +194,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var importanceValue = localStorage.getItem(importanceKey);
 		importance.value = importanceValue;
 	};
-	*/
+	
 
 
 

@@ -13,18 +13,13 @@ window.addEventListener("DOMContentLoaded", function(){
 	};
 	
 // Functions
-	/* Add Items TO localStorage */
-	var captureData = function(){
-		localStorage.setItem("Idea Title",ideaTitle.value);
-		localStorage.setItem("Importance",importance.value);
-		localStorage.setItem("Date Logged",dateDue.value);
-		localStorage.setItem("Idea Description",description.value);
-	};
 	
 	// Array for creating the Select Fields with JS
 	var statusGroup = ["Lightbulb", "Requirements", "Development", "Implemented"],
-	itemTypeValue = false;
+	itemTypeValue = false,
+	errMsg = $('errors');
 	catCreate();
+	
 	
 	// Create Select Field from JS instead of HTML
 	function catCreate(){
@@ -56,18 +51,14 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	// Checkbox Value
 	function getRadios(){
-		if($('domain').checked){
-			itemTypeValue = "Domain";
-		}else if($('website').checked){
-			itemTypeValue = "Website";
-		}else if($('app').checked){
-			itemTypeValue = "App";
-		}else{
-			itemTypeValue = "No";
+		var radioValue = document.forms[0].ideaType;
+		for(i=0, j=radioValue.length; i<j; i++){
+			if(radioValue[i].checked){
+				itemTypeValue = radioValue[i].value;
+			}
 		}
 	};
 	
-	var checkboxes = document.getElementById("mySubmit").ideaType;
 	
 	// Toggle Display for Display Data
 	function toogleControls(n){
@@ -92,8 +83,12 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	
 	// Function to Store Data
-	function storeData (){
-		var id = Math.floor(Math.random()*100000001);
+	function storeData(key){
+		if(!key){
+			var id = Math.floor(Math.random()*100000001);
+		}else{
+			id = key;
+		}
 		// Get all form data in an Object
 		getRadios();
 		var idea = {};
@@ -101,18 +96,25 @@ window.addEventListener("DOMContentLoaded", function(){
 			idea.importance = ["Importance:", $('importance').value];
 			idea.dateDue = ["Date Due:", $('dateDue').value];
 			idea.description = ["Description:", $('description').value];
-			idea.ideatype = ["Idea Type:", itemTypeValue];
 			idea.status = ["Status:", $('status').value];
+			idea.type = ["Type:", itemTypeValue];
+			// Add Radio Check to get value
 		localStorage.setItem(id, JSON.stringify(idea));
 		console.log(idea);
 		alert("Idea Logged!");
 	};
-	
+
 	// Function to display items and hide form when button is clicked
 	var displayData = function(){
+/*
+		if(document.getElementById("items")){
+			// remove all content on screen
+			document.getElementById("items").innerHTML = "";
+		}
+*/
 		toogleControls("on");
 		if(localStorage.length === 0){
-			alert("You have no data in storage");
+			alert("You have no ideas to display");
 			window.location.reload();
 		}
 		// Display data to user
@@ -158,7 +160,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		deleteLink.href = "#";
 		deleteLink.key = key;
 		var deleteText = "Delete Idea";
-		//deleteLink.addEventListener("click", deleteItem);
+		deleteLink.addEventListener("click", deleteItem);
 		deleteLink.innerHTML = deleteText;
 		createLinks.appendChild(deleteLink);
 	};
@@ -174,23 +176,107 @@ window.addEventListener("DOMContentLoaded", function(){
 		$('importance').value = idea.importance[1];
 		$('dateDue').value = idea.dateDue[1];
 		$('description').value = idea.description[1];
-		$('status').value = idea.status[1];
-		
+		$('status').value = idea.status[1];		
 /* 		Need Radio Button and/or Checkbox Code */
-		var radios = document.forms[0].ideaType;
-		for(var i=0; i<radios.length; i++){
-			if(idea.ideatype[1] == "Domain"){
-				radios[i].setAttribute("checked", "checked");
-			}else if(idea.ideatype[1] == "App"){
-				radios[i].setAttribute("checked", "checked");
-			}else if(idea.ideatype[1] == "Website"){
-				radios[i].setAttribute("checked", "checked");
+		var radioButtons = document.forms[0].ideaType;
+		for(var i=0; i<radioButtons.length; i++){
+			if(radioButtons[i].value == "domain" && idea.type[1] == "domain"){
+				radioButtons[i].setAttribute("checked", "checked");
+			}else if(radioButtons[i].value == "website" && idea.type[1] == "website"){
+				radioButtons[i].setAttribute("checked", "checked");
+			}else if(radioButtons[i].value == "app" && idea.type[1] == "app"){
+				radioButtons[i].setAttribute("checked", "checked");
 			}
+		}		
+		// Remove StoreData
+		save.removeEventListener("click", storeData);
+		// Change add to edit
+		$('butSubmit').value = "Edit Idea";
+		// Create a listener that will run validate function
+		var editSubmit = $('butSubmit');
+		editSubmit.addEventListener("click", validate);
+		// Save key value established as property of edit submit event
+		editSubmit.key = this.key;
+	};
+	
+	function validate(e){
+		// Define scope of validation
+		var getTitle = $('ideaTitle');
+		var getDateDue = $('dateDue');
+		var getDescription = $('description');
+		var getStatus = $('status');
+		var messageAry = [];
+		
+		// Reset Error msg
+		errMsg.innerHTML = "";
+		getTitle.style.border = "1px solid black";
+		getDateDue.style.border = "1px solid black";
+		getDescription.style.border = "1px solid black";
+		getStatus.style.border = "1px solid black";
+		
+		// Title Validation
+		if(getTitle.value === ""){
+			var titleError = "Please add a Title.";
+			getTitle.style.border = "1px solid red";
+			messageAry.push(titleError);
+		}
+		// Date Due Validation
+		if(getDateDue.value === ""){
+			var dateDueError = "Please add a Due Date.";
+			getDateDue.style.border = "1px solid red";
+			messageAry.push(dateDueError);
+		}
+		// Description Validation
+		if(getDescription.value === ""){
+			var descriptionError = "Please add a Description.";
+			getDescription.style.border = "1px solid red";
+			messageAry.push(descriptionError);
+		}
+		// Status Validation
+		if(getStatus.value === ""){
+			var statusError = "Please add a Current Status.";
+			getStatus.style.border = "1px solid red";
+			messageAry.push(statusError);
+		}
+/*
+		// Email RegEx
+		var re = /^\w+([\.-]?\w+)([\.-]?\w+)*(\.\w{2,3,4})+$/;
+		if(!(re.exec(getEmail.value))){
+			var emailError = "Please enter a valid email address";
+			getEmail.style.border = "1px solid red";
+			messageAry.push(emailError);
+		}
+*/
+		// Display Errors
+		if(messageAry.length >= 1){
+			for(var i = 0, j=messageAry.length; i<j; i++){
+				var txt = document.createElement('li');
+				txt.innerHTML = messageAry[i];
+				errMsg.appendChild(txt);
+			}
+			e.preventDefault();
+			return false;
+		}else{
+			// No issues, so kick off storeData with the original key if it exists
+			storeData(this.key);
+		}
+		
+	};
+	
+	function deleteItem(key){
+		var ask = confirm("Are you sure you want to delete this idea?");
+		if(ask){
+			localStorage.removeItem(this.key);
+			alert("Idea was deleted successfully!");
+			window.location.reload();
+		}else{
+			alert("Idea was not deleted, now get to work!")
 		}
 	};
 	
 	/* Listeners */
-	butSubmit.addEventListener("click" , storeData);
+	var save = $('butSubmit');
+	save.addEventListener("click" , validate);
 	clearAllLink.addEventListener("click", clearAll);
 	displayLink.addEventListener("click", displayData);
 });

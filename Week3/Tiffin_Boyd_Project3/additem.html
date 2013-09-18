@@ -29,21 +29,23 @@ Boyd Tiffin
 			<form action="#" method="post" id="mySubmit">
 				<fieldset>
 					<legend>Add Idea</legend>
+					<ul id="errors"></ul>
+					<span>* Required Fields</span>
 					<ul>
-						<li><label for="ideaTitle">Idea Title:</label><input type="text" id="ideaTitle" /></li>
-						<li><label for="importance">Importance:</label><input type="range" min="1" max="10" id="importance" /></li>
-						<li>Million Dollar Idea?<br />
-							<input type="radio" name="ideaType" value="Domain" id="domain" /><label for="Domain">Domain</label>
-							<input type="radio" name="ideaType" value="Website" id="website" /><label for="Domain">Website</label>
-							<input type="radio" name="ideaType" value="App" id="app" /><label for="Domain">App</label>
+						<li><label for="ideaTitle">*Idea Title:</label><input type="text" id="ideaTitle" /></li>
+						<li><label for="importance">*Importance:</label><input type="range" min="1" max="10" id="importance" /></li>
+						<li>Idea Type<br />
+							<input type="radio" name="ideaType" value="domain" /><label for="Domain">Domain</label>
+							<input type="radio" name="ideaType" value="website" /><label for="Website">Website</label>
+							<input type="radio" name="ideaType" value="app" /><label for="App">App</label>
 						</li>
-						<li><label for="dateDue">Date Due:</label><input type="date" id="dateDue" /></li>
-						<li id="select"><label for="status">Current Status</label>
-						<li><label for="description">Type your full idea below:</label><textarea id="description"></textarea></li>
+						<li><label for="dateDue">*Date Due:</label><input type="date" id="dateDue" /></li>
+						<li id="select"><label for="status">*Current Status</label>
+						<li><label for="description">*Type your full idea below:</label><textarea id="description"></textarea></li>
 						<input id="week" type="hidden" value="Week 1">
 					</ul>
 				</fieldset>
-				<input id="butSubmit" type="button" value="Log Idea Now" />
+				<input id="butSubmit" type="submit" value="Log Idea Now" />
 			</form>
 			<a id="clearAllLink" href="#">Clear Stored Data</a>  |  <a id="displayLink" href="#">Display Data</a>  |  <a id="addNew" href="additem.html">Add New Item</a>
 		</section>
