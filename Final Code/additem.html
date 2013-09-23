@@ -20,10 +20,7 @@ Boyd Tiffin
 	<div id="background"></div>
 <!-- 	Start Header -->
 		<header>
-			<a id="clearAllLink" href="#">Clear Stored Data</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="displayLink" href="#">View Ideas</a> <a id="addNew" href="additem.html">Add New Item</a>
-			<div>
-				<h1>Add Your Idea</h1>
-			</div>
+			<a id="clearAllLink" href="#">Clear Stored Data</a> <a id="displayLink" href="#">View Ideas</a> <a id="addNew" href="additem.html">Add New Item</a>
 		</header>
 <!-- 	End Header	 -->
 <!-- 	Start Body	 -->
@@ -33,15 +30,16 @@ Boyd Tiffin
 					<legend>Add Idea</legend>
 						<input type="text" id="ideaTitle" placeholder="Idea Title" />
 						<label for="potential">Money Making Potential</label><input type="range" min="0" max="10" id="potential" />
-						Million Dollar Idea?<input type="checkbox" name="category" value="Yes" id="category" /><label for="category">Yes?</label>
-						
+						<input type="radio" name="ideaType" value="domain" /><label for="Domain">Domain</label>
+						<input type="radio" name="ideaType" value="website" /><label for="Website">Website</label>
+						<input type="radio" name="ideaType" value="app" /><label for="App">App</label>
 						<label for="dateDue">Date Needed:</label><input type="date" id="dateDue" />
 						<li id="select"><label for="status">Current Status</label></li>
 						<label for="description">Type your full idea below:</label><textarea id="description"></textarea>
 						<input id="week" type="hidden" value="Week 1">
 					</ul>
 				</fieldset>
-				<input class="homeFormBut" id="butSubmit" type="button" value="Log Idea Now" />
+				<input class="homeFormBut" id="butSubmit" type="submit" value="Log Idea Now" />
 			</form>
 			
 		</section>

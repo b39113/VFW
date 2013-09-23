@@ -1,3 +1,8 @@
+// JavaScript code for Week 3
+//Project 
+//Boyd Tiffin
+//1309 -Visual Frameworks
+
 
 // Load all content before JS code runs
 window.addEventListener("DOMContentLoaded", function(){
