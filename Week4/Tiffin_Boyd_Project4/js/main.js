@@ -1,4 +1,4 @@
-// JavaScript code for Week 3
+// JavaScript code for Week 4
 //Project 
 //Boyd Tiffin
 //1309 -Visual Frameworks
@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", function(){
 // Functions
 	
 	// Array for creating the Select Fields with JS
-	var statusGroup = ["Lightbulb", "Requirements", "Development", "Implemented"],
+	var statusGroup = ["Idea", "Requirements", "Development", "Production"],
 	itemTypeValue = false,
 	errMsg = $('errors');
 	catCreate();
@@ -114,7 +114,8 @@ window.addEventListener("DOMContentLoaded", function(){
 */
 		toogleControls("on");
 		if(localStorage.length === 0){
-			alert("You have no ideas to display");
+			alert("You have no ideas to display, default data was added");
+			autoFillData();
 			window.location.reload();
 		}
 		// Display data to user
@@ -134,6 +135,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var obj = JSON.parse(value); 
 			var createSubList = document.createElement('ul');
 			createLi.appendChild(createSubList);
+			getImage(createSubList, obj.status[1]);
 			for(var d in obj){
 				var createSubLi = document.createElement('li');
 				createSubList.appendChild(createSubLi);
@@ -144,6 +146,21 @@ window.addEventListener("DOMContentLoaded", function(){
 			createItemLinks(localStorage.key(i), createLinks); // Creates the overall app edit and delete links
 		}		
 	};
+	
+	function getImage(createSubList, catName){
+		var imageLi = document.createElement('li');
+		createSubList.appendChild(imageLi);
+		var newImg = document.createElement('img');
+		var setSrc = newImg.setAttribute("src", "img/"+ catName + ".png")
+		imageLi.appendChild(newImg);
+	}
+	
+	function autoFillData(){
+		for(var n in json){
+			var id = Math.floor(Math.random()*100000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
+		}
+	}
 	
 	function createItemLinks(key,createLinks){
 		var editLink = document.createElement('a');

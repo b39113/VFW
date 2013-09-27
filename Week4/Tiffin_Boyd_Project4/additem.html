@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
-Project 3
+Project 4
 Boyd Tiffin
 1309 -Visual Frameworks
 -->
@@ -21,6 +21,7 @@ Boyd Tiffin
 		<header>
 			<div>
 				<h1>Idea List</h1>
+				<a id="clearAllLink" href="#">Clear Stored Data</a>  |  <a id="displayLink" href="#">Display Data</a>  |  <a id="addNew" href="additem.html">Add New Item</a>
 			</div>
 		</header>
 <!-- 	End Header	 -->
@@ -37,19 +38,20 @@ Boyd Tiffin
 						<br />
 						<input type="range" min="1" max="10" id="importance" />
 						<br />
-						Idea Type<br />
+						Choose One<br />
 							<input type="radio" name="ideaType" value="domain" /><label for="Domain">Domain</label>
 							<input type="radio" name="ideaType" value="website" /><label for="Website">Website</label>
 							<input type="radio" name="ideaType" value="app" /><label for="App">App</label>
+						<br />
 						<label for="dateDue">*Date Due:</label><input type="date" id="dateDue" />
-						<li id="select"><label for="status">*Current Status</label>
-						<li><label for="description">*Type your full idea below:</label><textarea id="description"></textarea></li>
+						<li id="select"><label for="status">*Current Status</label></li>
+						<textarea id="description" placeholder="* Full Details Here..."></textarea>
 						<input id="week" type="hidden" value="Week 1">
 				</fieldset>
 				<input id="butSubmit" type="submit" value="Log Idea Now" />
 			</form>
-			<a id="clearAllLink" href="#">Clear Stored Data</a>  |  <a id="displayLink" href="#">Display Data</a>  |  <a id="addNew" href="additem.html">Add New Item</a>
 		</section>
+		<script src="js/json.js" type="text/javascript"></script>
 		<script src="js/main.js" type="text/javascript"></script>
 	</body>
 </html>
